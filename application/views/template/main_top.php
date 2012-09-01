@@ -115,11 +115,11 @@
 
 								// Convert response
 								$fb_json = json_decode($output);
-								
-								// handle error; error output
+
+								// Handle Output
 								if (curl_getinfo($ch, CURLINFO_HTTP_CODE)==200){
 									if (count($fb_json) > 0 && strlen($output) > 11){
-										$fb_event_array	= $fb_json['data'];
+										$fb_event_array	= $fb_json->data;
 										$count			= 0;
 										$alt_class		= '';
 										if (count($fb_event_array) > 0){
@@ -129,8 +129,8 @@
 					                                <div class="box">
 					                                    <div class="wrapper">
 					                                        <div class="extra-wrap">
-					                                        	<time class="time-style" datetime="<?=$event['start_time'];?>"><?=date('M j, Y h:iA', strtotime($event['start_time']));?></time>
-					                                            <span class="bl"><strong><?=$event['name'];?></strong> @ <?=$event['location'];?><br/><a href="https://www.facebook.com/events/<?=$event['id'];?>/" target="_blank">RSVP on Facebook</a></span>
+					                                        	<time class="time-style" datetime="<?=$event->start_time;?>"><?=date('M j, Y h:iA', strtotime($event->start_time));?></time>
+					                                            <span class="bl"><strong><?=$event->name;?></strong> @ <?=$event->location;?><br/><a href="https://www.facebook.com/events/<?=$event->id;?>/" target="_blank">RSVP on Facebook</a></span>
 					                                        </div>
 					                                    </div>
 					                                </div>
