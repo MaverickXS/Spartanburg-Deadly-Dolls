@@ -96,8 +96,18 @@
 	                    	<div class="indent">
 	                    		<h4>Latest News &amp; Events</h4>
 	                    		<?
-                    			$url 	= 'https://graph.facebook.com/spddolls/events?access_token=AAACEdEose0cBABvXgZBNIbh3znn6JnWJfdx9qiXhqwnGtpCeeSYI0V7u4QP1aVLxWPivGVLgeNK9CZCgtxq7BnyUjDsP45QlFd6VUPPwZDZD';
-                    			// $url = 'https://graph.facebook.com/576061663/events?access_token=AAACEdEose0cBABvXgZBNIbh3znn6JnWJfdx9qiXhqwnGtpCeeSYI0V7u4QP1aVLxWPivGVLgeNK9CZCgtxq7BnyUjDsP45QlFd6VUPPwZDZD'; // Me
+	                    		// Get FB Access Token
+	                    		$url 	= 'https://graph.facebook.com/oauth/access_token?client_id=277754392334380&client_secret=60bdee57edf5d5c7a27da109d543fbab&grant_type=client_credentials';
+                    			$ch 	= curl_init();
+								curl_setopt($ch, CURLOPT_URL, $url); 
+								curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
+								$output = curl_exec($ch); 
+								curl_close($ch);
+								$fb_access_token = str_ireplace('access_token=', '', $output);
+
+								// Get events
+                    			$url 	= 'https://graph.facebook.com/spddolls/events?access_token=' . $fb_access_token; // SDD
+                    			//$url 	= 'https://graph.facebook.com/576061663/events?access_token=' . $fb_access_token; // Me
                     			$ch 	= curl_init();
 								curl_setopt($ch, CURLOPT_URL, $url); 
 								curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
@@ -105,10 +115,10 @@
 
 								// Convert response
 								$fb_json = json_decode($output);
-
+								
 								// handle error; error output
 								if (curl_getinfo($ch, CURLINFO_HTTP_CODE)==200){
-									if (count($fb_json) > 0){
+									if (count($fb_json) > 0 && strlen($output) > 11){
 										$fb_event_array	= $fb_json['data'];
 										$count			= 0;
 										$alt_class		= '';
