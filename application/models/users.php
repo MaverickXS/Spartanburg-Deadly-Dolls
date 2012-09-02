@@ -27,27 +27,34 @@ class Users extends CI_Model{
 		return $this->db->get();
 	}
 	
-	public function get_roster($team = 1, $active = 1, $fresh_meat = 0, $staff_type = 15){
+	public function get_roster($team = 1, $active = 1){
+		$this->db->select('*, Replace(`users`.`skate_name`, \'The \', \'\') As Sort_Skate_Name', false);
 		$this->db->from('users');
 		$this->db->join('user_team_map', 'user_team_map.u_id = users.u_key');
-		if (isset($staff_type)){
-			$this->db->join('user_staff_type_map', 'user_staff_type_map.u_id = users.u_key');
-			$this->db->where('user_staff_type_map.st_id', $staff_type);
-		}
 		$this->db->where('user_team_map.t_id', $team);
-		$this->db->where('user_team_map.active', $active);
-		if (isset($fresh_meat)){ $this->db->where('user_team_map.fresh_meat', $fresh_meat); }
-		$this->db->order_by('IfNull(users.skate_name, users.first_name), users.number', '', false);
+		$this->db->where('user_team_map.is_active', $active);
+		$this->db->order_by('Sort_Skate_Name, users.number', '');
+
+		return $this->db->get();
+	}
+	
+	public function get_staff($team = 1, $active = 1){
+		$this->db->select('*, Replace(`users`.`skate_name`, \'The \', \'\') As Sort_Skate_Name', false);
+		$this->db->from('users');
+		$this->db->join('user_team_map', 'user_team_map.u_id = users.u_key');
+		$this->db->where('users.is_staff', 1);
+		$this->db->where('user_team_map.t_id', $team);
+		$this->db->where('user_team_map.is_active', $active);
+		$this->db->order_by('Sort_Skate_Name, users.number', '');
+
 		return $this->db->get();
 	}
 
 	public function get_featured(){
 		$this->db->from('users');
 		$this->db->join('user_team_map', 'user_team_map.u_id = users.u_key');
-		$this->db->join('user_staff_type_map', 'user_staff_type_map.u_id = users.u_key');
-		$this->db->where('user_staff_type_map.st_id', 15);
 		$this->db->where('user_team_map.t_id', 1);
-		$this->db->where('user_team_map.active', 1);
+		$this->db->where('user_team_map.is_active', 1);
 		$this->db->where('user_team_map.fresh_meat', 0);
 		$this->db->order_by('rand()', '', false);
 		$this->db->limit(1);

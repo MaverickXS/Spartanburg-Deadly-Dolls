@@ -51,9 +51,9 @@
 	                    	}
 	                    	?>
 	                        <ul class="menu">
-	                            <li><a<? if ($_slug=='about-us' || $_slug=='meet-the-dolls' || $_slug=='schedule' || $_slug==''){ ?> class="active"<? } ?> href="/about-us/">About us</a>
+	                            <li><a<? if ($_slug=='about-us' || $_slug=='meet_the_dolls' || $_slug=='schedule' || $_slug==''){ ?> class="active"<? } ?> href="/about-us/">About us</a>
 	                            	<ul>
-	                                	<li><a<? if ($_slug=='meet-the-dolls'){ ?> class="active"<? } ?> href="/meet-the-dolls/">Meet the Dolls</a></li>
+	                                	<li><a<? if ($_slug=='meet_the_dolls'){ ?> class="active"<? } ?> href="/meet_the_dolls/">Meet the Dolls</a></li>
 	                                    <li><a<? if ($_slug=='schedule'){ ?> class="active"<? } ?> href="/schedule/">Schedule</a></li>
 	                                </ul>
 	                            </li>

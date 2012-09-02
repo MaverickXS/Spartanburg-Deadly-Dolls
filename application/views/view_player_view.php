@@ -6,19 +6,23 @@
 	</span>
 <? } ?>
 <h1><?=$page_title;?></h1>
-<? if ($user_attributes->num_rows() > 0){
-	$group = '';
-	$first = true;
-	foreach ($user_attributes->result() as $detail){
-		if ($group!=$detail->group){
-			if (!$first){ ?></dl><? }
-			?><h3><?=$detail->group;?></h3><dl><?
-			$group = $detail->group;
-			$first = false;
-		}
-		?>
-		<dt><?=$detail->attribute;?>:</dt>
-			<dd><?=$detail->value;?></dd>
-	<? } ?>
-	</dl>
-<? } ?>
+<? 
+if (isset($user_attributes)){
+	if ($user_attributes->num_rows() > 0){
+		$group = '';
+		$first = true;
+		foreach ($user_attributes->result() as $detail){
+			if ($group!=$detail->group){
+				if (!$first){ ?></dl><? }
+				?><h3><?=$detail->group;?></h3><dl><?
+				$group = $detail->group;
+				$first = false;
+			}
+			?>
+			<dt><?=$detail->attribute;?>:</dt>
+				<dd><?=$detail->value;?></dd>
+		<? } ?>
+		</dl>
+	<?
+	}
+}?>
