@@ -32,7 +32,7 @@ if (curl_getinfo($ch, CURLINFO_HTTP_CODE)==200){
                     $count++;
                     ?>
                     <article>
-                        <h2><?=date('M d, Y h:iA', strtotime($post_date . " +1 day"));?></h2>
+                        <h3><?=date('M d, Y h:iA', strtotime($post_date . " +1 day"));?></h3>
                         <p><?=$post->message;?></p>
                     </article>
                     <?
