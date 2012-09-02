@@ -122,12 +122,12 @@
 										$fb_event_array	= $fb_json->data;
 										asort($fb_event_array);
 										$count			= 0;
-										$alt_class		= '';
+										$alt_class		= 'bg1';
 										if (count($fb_event_array) > 0){
 											foreach ($fb_event_array as $event){
 												$event_date = date('Y-m-d H:i:s', strtotime($event->start_time));
 												$count++; ?>
-					                            <div class="bg1<?=$alt_class;?>">
+					                            <div class="<?=$alt_class;?>">
 					                                <div class="box">
 					                                    <div class="wrapper">
 					                                        <div class="extra-wrap">
@@ -138,10 +138,10 @@
 					                                </div>
 					                            </div>
 					                        	<?
-					                        	if ($alt_class==''){
-					                        		$alt_class = ' alt';
+					                        	if ($alt_class=='bg1'){
+					                        		$alt_class = 'bg2';
 												} else {
-													$alt_class	= '';
+													$alt_class	= 'bg1';
 												}
 
 					                        	if ($count==3 || $count==(count($fb_json) - 1)){
