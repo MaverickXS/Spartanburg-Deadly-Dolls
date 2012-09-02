@@ -27,7 +27,7 @@ class Meet_the_dolls extends CI_Controller {
 		$this->data['staff']	= $this->users->get_staff();
 
 		$this->load->view('template/main_top', $this->data);
-		//$this->load->view('content_view', $this->data);
+		$this->load->view('content_view', $this->data);
 		$this->load->view('meet_the_dolls_view', $this->data);
 		$this->load->view('template/main_bottom', $this->data);
 	}

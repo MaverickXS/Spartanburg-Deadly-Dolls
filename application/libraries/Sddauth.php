@@ -30,7 +30,7 @@ class Sddauth{
 			$row = $query->row_array();
 
 			//Check against password
-			if (md5($password)!=$row['pw']){
+			if ($password!=$row['pw']){
 				return 'invalidpass';
 			}
 			
