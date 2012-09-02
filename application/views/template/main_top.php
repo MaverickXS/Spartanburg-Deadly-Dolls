@@ -94,7 +94,7 @@
 	                <div class="wrapper">
 	                    <div class="grid_7">
 	                    	<div class="indent">
-	                    		<h4>Latest News &amp; Events</h4>
+	                    		<h4>Upcoming Events</h4>
 	                    		<?
 	                    		// Get FB Access Token
 	                    		$url 	= 'https://graph.facebook.com/oauth/access_token?client_id=277754392334380&client_secret=60bdee57edf5d5c7a27da109d543fbab&grant_type=client_credentials';
