@@ -1,8 +1,7 @@
 <?php
 class MY_Router extends CI_Router {
-
-    function MY_Router(){
-        parent::CI_Router();
+    function __construct(){
+        parent::__construct();
     }
 
     function _validate_request($segments){

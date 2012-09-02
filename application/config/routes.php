@@ -41,14 +41,15 @@
 $route['default_controller']	= 'home';
 $route['404_override']			= '';
 
-// SCM 08/23/2012 - Need to list out all pages due to catchall and not having the time to do it right, right now...
-$route['edit_profile']          = 'edit_profile';
+// SCM 08/23/2012 - Need to list out all pages due to catchall and not having the time to do it right, right now... SCM 09/02/2012 FIXED
 $route['view_player/(:any)']    = 'view_player/index/$1';
-$route['login']                 = 'login';
-$route['logout']                = 'logout';
+//$route['edit_profile']          = 'edit_profile';
+//$route['login']                 = 'login';
+//$route['logout']                = 'logout';
 
-// SCM 08/15/2012 - Added for a "catch-all" in order to handle dynamic page naming (similar to WordPress)
-$route['(:any)']				= 'content/index/$1';
+// SCM 08/15/2012 - Added for a "catch-all" in order to handle dynamic page naming (similar to WordPress)  SCM 09/02/2012 FIXED
+//$route['(:any)']				= 'content/index/$1';
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
+?>
