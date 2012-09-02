@@ -28,11 +28,10 @@ if (curl_getinfo($ch, CURLINFO_HTTP_CODE)==200){
             foreach ($fb_posts as $post){
                 //var_dump($post);
                 if (!isset($post->story) && $post->type='status'){
-                    $post_date = date('Y-m-d H:i:s', strtotime($post->created_time));
                     $count++;
                     ?>
                     <article>
-                        <h3><?=date('M d, Y h:iA', strtotime($post_date . " +1 day"));?></h3>
+                        <h3><?=date('M d, Y h:iA', strtotime($post->created_time));?></h3>
                         <p><?=$post->message;?></p>
                     </article>
                     <?
