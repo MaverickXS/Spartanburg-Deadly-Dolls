@@ -125,13 +125,17 @@
 										$alt_class		= 'bg1';
 										if (count($fb_event_array) > 0){
 											foreach ($fb_event_array as $event){
-												$event_date = date('Y-m-d H:i:s', strtotime($event->start_time));
+												$event_date = date('Y-m-d H:i:s', strtotime(str_ireplace('-0400', '', str_ireplace('T', ' ', $event->start_time))));
+												$final_date	= date('M d, Y h:iA', strtotime($event_date));
+												if (!strpos($event->start_time, 'T')){
+													$final_date	= date('M d, Y', strtotime($event_date . " +1 day"));
+												}
 												$count++; ?>
 					                            <div class="<?=$alt_class;?>">
 					                                <div class="box">
 					                                    <div class="wrapper">
 					                                        <div class="extra-wrap">
-					                                        	<time class="time-style" datetime="<?=$event->start_time;?>"><?=date('M d, Y h:iA', strtotime($event_date . " +1 day"));?></time>
+					                                        	<time class="time-style" datetime="<?=strtotime($event->start_time);?>"><?=$final_date;?></time>
 					                                            <span class="bl"><strong><?=$event->name;?></strong> @ <?=$event->location;?><br/><a href="https://www.facebook.com/events/<?=$event->id;?>/" target="_blank">RSVP on Facebook</a></span>
 					                                        </div>
 					                                    </div>
@@ -154,16 +158,6 @@
 					            }
 								curl_close($ch);
 		                    	?>
-	                        	<!--<div class="bg1">
-	                                <div class="box">
-	                                    <div class="wrapper">
-	                                        <div class="extra-wrap">
-	                                        	<time class="time-style" datetime="2012-09-30">September 30th, 2012</time>
-	                                            <span class="bl">Bout @ Cirque de Pain</span>
-	                                        </div>
-	                                    </div>
-	                                </div>
-	                            </div>-->
 	                            <div class="bg2">
 	                                <div class="box">
 	                                    <div class="wrapper">
