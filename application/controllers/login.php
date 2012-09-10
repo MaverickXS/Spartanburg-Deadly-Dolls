@@ -20,7 +20,9 @@ class Login extends CI_Controller {
 	}
 
 	public function index(){
-		$this->data['login_error'] = '';		
+		$slug 						= get_controller_as_page_slug();
+		$this->data['slug']			= $slug;
+		$this->data['login_error'] 	= '';		
 
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('username', 'Username', 'trim|required|min_length[5]|max_length[100]');

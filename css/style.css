@@ -406,8 +406,8 @@ h5 a:hover {color:#e2e2e2;}
 }
 
 .subscribe-bg {
-	background:url(../img/subscribe-bg.jpg) 0 0 no-repeat #000000;
-	padding:8px 0 23px;
+	background:url(../img/subscribe-bg.jpg) 0 0 repeat-y #000000;
+	padding: 8px 0 23px;
 }
 
 .subscribe-bg h4 {background:none;color:#FFF;}
@@ -702,3 +702,5 @@ small.footer_small { font-size: 8pt; }
 .form-actions { background-color: transparent !important; }
 
 span.number_wrap { display: inline-block; width: 50px; }
+
+input { height: 26px !important; }
