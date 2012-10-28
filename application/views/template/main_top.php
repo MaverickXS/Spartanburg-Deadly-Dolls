@@ -105,7 +105,8 @@
 										$event_date = date('Y-m-d H:i:s', strtotime(str_ireplace('-0400', '', str_ireplace('T', ' ', $event['start_time']))));
 										$final_date	= date('M d, Y h:iA', strtotime($event_date));
 										if (!strpos($event['start_time'], 'T')){
-											$final_date	= date('M d, Y', strtotime($event_date . " +1 day"));
+											//$final_date	= date('M d, Y', strtotime($event_date . " +1 day"));
+											$final_date	= date('M d, Y', strtotime($event_date));
 										}
 										$count++; ?>
 			                            <div class="<?=$alt_class;?>">
@@ -143,11 +144,11 @@
 	                                </div>
 	                            </div>
 
-	                            <? if ($_slug!='login' && !false==false){ ?>
+	                            <? if ($_slug!='login' && true==false){ ?>
 		                            <div class="subscribe-bg">
 		                            	<h4>Deadly Doll Login</h4>
 		                                <div class="subscribe-pad">
-		                                    <? //require_once(APPPATH . '/views/login_view.php'); ?>
+		                                    <? require_once(APPPATH . '/views/login_view.php'); ?>
 		                                </div>
 		                            </div>
 		                        <? } ?>
