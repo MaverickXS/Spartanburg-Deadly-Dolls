@@ -102,28 +102,30 @@
 								$alt_class		= 'bg1';
 								if (count($fb_event_array) > 0){
 									foreach ($fb_event_array as $key=>$event){
-										$event_date = date('Y-m-d H:i:s', strtotime(str_ireplace('-0400', '', str_ireplace('T', ' ', $event['start_time']))));
-										$final_date	= date('M d, Y h:iA', strtotime($event_date));
-										if (!strpos($event['start_time'], 'T')){
-											//$final_date	= date('M d, Y', strtotime($event_date . " +1 day"));
-											$final_date	= date('M d, Y', strtotime($event_date));
-										}
-										$count++; ?>
-			                            <div class="<?=$alt_class;?>">
-			                                <div class="box">
-			                                    <div class="wrapper">
-			                                        <div class="extra-wrap">
-			                                        	<time class="time-style" datetime="<?=strtotime($event['start_time']);?>"><?=$final_date;?></time>
-			                                            <span class="bl"><strong><?=$event['name'];?></strong> @ <?=$event['location'];?><br/><a href="https://www.facebook.com/events/<?=$key;?>/" target="_blank">RSVP on Facebook</a></span>
-			                                        </div>
-			                                    </div>
-			                                </div>
-			                            </div>
-			                        	<?
-			                        	if ($alt_class=='bg1'){
-			                        		$alt_class = 'bg2';
-										} else {
-											$alt_class	= 'bg1';
+										if (strtotime($event['start_time']) > strtotime(date('M d, Y'))){
+											$event_date = date('Y-m-d H:i:s', strtotime(str_ireplace('-0400', '', str_ireplace('T', ' ', $event['start_time']))));
+											$final_date	= date('M d, Y h:iA', strtotime($event_date));
+											if (!strpos($event['start_time'], 'T')){
+												//$final_date	= date('M d, Y', strtotime($event_date . " +1 day"));
+												$final_date	= date('M d, Y', strtotime($event_date));
+											}
+											$count++; ?>
+				                            <div class="<?=$alt_class;?>">
+				                                <div class="box">
+				                                    <div class="wrapper">
+				                                        <div class="extra-wrap">
+				                                        	<time class="time-style" datetime="<?=strtotime($event['start_time']);?>"><?=$final_date;?></time>
+				                                            <span class="bl"><strong><?=$event['name'];?></strong> @ <?=$event['location'];?><br/><a href="https://www.facebook.com/events/<?=$key;?>/" target="_blank">RSVP on Facebook</a></span>
+				                                        </div>
+				                                    </div>
+				                                </div>
+				                            </div>
+				                        	<?
+				                        	if ($alt_class=='bg1'){
+				                        		$alt_class = 'bg2';
+											} else {
+												$alt_class	= 'bg1';
+											}
 										}
 
 			                        	if ($count==3 || $count==(count($fb_event_array) - 1)){
